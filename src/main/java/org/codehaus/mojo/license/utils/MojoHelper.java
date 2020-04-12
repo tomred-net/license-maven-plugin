@@ -56,7 +56,7 @@ public class MojoHelper
      * @param includes the includes of the resource
      * @return {@code true} if the resources was added (not already existing)
      */
-    public static boolean addResourceDir ( File dir, MavenProject project, String... includes )
+    public static boolean addResourceDir( File dir, MavenProject project, String... includes )
     {
         List<?> resources = project.getResources ();
         return addResourceDir ( dir, project, resources, includes );
@@ -71,7 +71,7 @@ public class MojoHelper
      * @param includes  includes of the new resources
      * @return {@code true} if the resource was added (not already existing)
      */
-    public static boolean addResourceDir ( File dir, MavenProject project, List<?> resources, String... includes )
+    public static boolean addResourceDir( File dir, MavenProject project, List<?> resources, String... includes )
     {
         String newresourceDir = dir.getAbsolutePath ();
         boolean shouldAdd = true;
@@ -109,14 +109,14 @@ public class MojoHelper
         return shouldAdd;
     }
 
-    public static Comparator<MavenProject> newMavenProjectComparator ()
+    public static Comparator<MavenProject> newMavenProjectComparator()
     {
         return new Comparator<MavenProject> ()
         {
             /**
              * {@inheritDoc}
              */
-            public int compare ( MavenProject o1, MavenProject o2 )
+            public int compare( MavenProject o1, MavenProject o2 )
             {
 
                 String id1 = getArtifactId ( o1.getArtifact () );
@@ -127,14 +127,14 @@ public class MojoHelper
 
     }
 
-    public static Comparator<MavenProject> newMavenProjectComparatorByName ()
+    public static Comparator<MavenProject> newMavenProjectComparatorByName()
     {
         return new Comparator<MavenProject> ()
         {
             /**
              * {@inheritDoc}
              */
-            public int compare ( MavenProject o1, MavenProject o2 )
+            public int compare( MavenProject o1, MavenProject o2 )
             {
 
                 String id1 = getProjectName ( o1 );
@@ -151,17 +151,17 @@ public class MojoHelper
     protected static final String[] TIME_UNITES =
     { "ns", "ms", "s", "m", "h", "d" };
 
-    public static String convertTime ( long value )
+    public static String convertTime( long value )
     {
         return convert ( value, TIME_FACTORS, TIME_UNITES );
     }
 
-    public static String convert ( long value, double[] factors, String[] unites )
+    public static String convert( long value, double[] factors, String[] unites )
     {
         long sign = value == 0 ? 1 : value / Math.abs ( value );
         int i = 0;
         double tmp = Math.abs ( value );
-        while ( i < factors.length && i < unites.length && tmp > factors[i] )
+        while (i < factors.length && i < unites.length && tmp > factors[i])
         {
             tmp = tmp / factors[i++];
         }
@@ -179,7 +179,7 @@ public class MojoHelper
      * @param suffix  suffix to add
      * @return the new url
      */
-    public static URL getUrl ( URL baseUrl, String suffix )
+    public static URL getUrl( URL baseUrl, String suffix )
     {
         String url = baseUrl.toString () + "/" + suffix;
         try
@@ -192,7 +192,7 @@ public class MojoHelper
         }
     }
 
-    public static String getArtifactId ( Artifact artifact )
+    public static String getArtifactId( Artifact artifact )
     {
         StringBuilder sb = new StringBuilder ();
         sb.append ( artifact.getGroupId () );
@@ -203,7 +203,7 @@ public class MojoHelper
         return sb.toString ();
     }
 
-    public static String getArtifactName ( MavenProject project )
+    public static String getArtifactName( MavenProject project )
     {
         StringBuilder sb = new StringBuilder ();
         if ( project.getName ().startsWith ( "Unnamed -" ) )
@@ -230,7 +230,7 @@ public class MojoHelper
         return sb.toString ();
     }
 
-    public static String getProjectName ( MavenProject project )
+    public static String getProjectName( MavenProject project )
     {
         String sb;
         if ( project.getName ().startsWith ( "Unnamed" ) )
@@ -247,7 +247,7 @@ public class MojoHelper
         return sb;
     }
 
-    public static List<String> getParams ( String params )
+    public static List<String> getParams( String params )
     {
         String[] split = params == null ? new String[0] : params.split ( "," );
         return Arrays.asList ( split );
@@ -265,7 +265,7 @@ public class MojoHelper
      * @param project the MavenProject to retrieve artifacts from
      * @return a HashSet of dependencies or an empty set
      */
-    public static Set<Artifact> getDependencyArtifacts ( MavenProject project )
+    public static Set<Artifact> getDependencyArtifacts( MavenProject project )
     {
         if ( project == null || project.getDependencyArtifacts () == null )
         {
