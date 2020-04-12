@@ -145,11 +145,9 @@ public class MojoHelper
 
     }
 
-    protected static final double[] TIME_FACTORS =
-    { 1000000, 1000, 60, 60, 24 };
+    protected static final double[] TIME_FACTORS = { 1000000, 1000, 60, 60, 24 };
 
-    protected static final String[] TIME_UNITES =
-    { "ns", "ms", "s", "m", "h", "d" };
+    protected static final String[] TIME_UNITES = { "ns", "ms", "s", "m", "h", "d" };
 
     public static String convertTime( long value )
     {
@@ -161,7 +159,7 @@ public class MojoHelper
         long sign = value == 0 ? 1 : value / Math.abs( value );
         int i = 0;
         double tmp = Math.abs( value );
-        while (i < factors.length && i < unites.length && tmp > factors[i])
+        while ( i < factors.length && i < unites.length && tmp > factors[i] )
         {
             tmp = tmp / factors[i++];
         }
@@ -275,5 +273,4 @@ public class MojoHelper
         }
         return project.getDependencyArtifacts();
     }
-
 }
